@@ -1,0 +1,46 @@
+{% extends "blog/base.html" %}
+{% load embed_video_tags %}
+{% block content %}
+
+<article class="content-section">
+
+  <img src="{{object.image.url}}"></img>
+
+<div class="subir">
+  <div class="media-body">
+
+ 
+<div class="article-content">    
+{% for obj in indexed_subcontent%}
+      {{ obj.1.sub_content | safe}}
+      
+	{%if obj.1.images%}
+      <img src="{{ obj.1.images.url}}"></img>
+      {% endif %}
+    
+
+    {% endfor %}
+</div>
+
+    {% if object.video %}
+    <h2>Video relacionado: </h2>
+    <div class="resp-container">
+      {% video object.video %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+  <div class="card">
+    <div class="card-header">
+      Escrito por: <a class="mr-2" href="{% url 'user-posts' object.author.username %}">Marco Ycaza</a>
+      <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+    </div>
+
+  </div>
+
+  <div class="fb-comments" data-href="https://www.neuronarebelde.com/post/{{object.pk}}/" data-numposts="5"
+    data-width=""></div>
+</article>
+
+{% endblock content %}
