@@ -1,23 +1,31 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
-    {% for post in posts %}
-        <article class="content-section">
+    
+	<article class="content-section">
           <div class="media-body">
-          <div class="card mb-3">
-              <img src="{{ post.image.url }}" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h3>
-                <a class="card-link text-dark" href="{% url 'post-detail' post.id %}" >{{ post.title }}</a>
-              </h3>
-                <p class="card-text">{{ post.abstract| truncatechars_html:200 |safe}}</p>
-                <p class="card-text"><small class="text-muted">Published at {{ post.date_posted}}</small></p>
-              </div>
+
+            <div class="card-columns">
+
+                  {%for post in posts %}
+                  <div class="card">
+                         <img src="{{ post.image.url }}" class="card-img-top" alt="...">
+
+                         <div class="card-body">
+                                 <h3>
+         <a class="card-link text-dark" href="{% url 'post-detail' post.slug %}" >{{ post.title }}</a>
+                                 </h3>
+                                 <p class="card-text">{{ post.abstract| truncatechars_html:200 |safe}}</p>
+                                 <p class="card-text"><small class="text-muted">Published at {{ post.date_posted}}</small></p>
+                         </div>
+
+                  </div>
+                  {% endfor %}
             </div>
-          
-	  </div>
+
+          </div>
         </article>
-    {% endfor %}
+
     {% if is_paginated %}
 
       {% if page_obj.has_previous %}

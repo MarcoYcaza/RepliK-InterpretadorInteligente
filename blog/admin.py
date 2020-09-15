@@ -7,7 +7,7 @@ class PostImageAdmin(admin.StackedInline):
 
 class PostAdmin(admin.ModelAdmin):
 
-    fields = ('title','abstract','post_tag','date_posted','author','video','image')
+    fields = ('title','slug','abstract','post_tag','date_posted','author','video','image')
 
     inlines = [PostImageAdmin]
 

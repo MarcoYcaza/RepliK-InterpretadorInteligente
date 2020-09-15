@@ -14,6 +14,7 @@ class Tag(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=100)
     abstract = RichTextUploadingField(blank=True,config_name='special')
+    slug = models.SlugField(null=True) # new
     image = models.ImageField(default='default.png',blank=True, upload_to='PostPics')
     post_tag = models.ManyToManyField(Tag,max_length=100)
     date_posted = models.DateTimeField(default=timezone.now)
@@ -24,7 +25,8 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('post-detail', kwargs={'pk': self.pk})
+       # return reverse('post-detail', kwargs={'pk': self.pk})
+       return reverse('post-detail',kwargs={'slug':self.slug}) #New
 
 class PostImage(models.Model):
     post = models.ForeignKey(Post, default=None, on_delete=models.CASCADE)

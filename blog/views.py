@@ -28,7 +28,7 @@ class PostListView(ListView):
     template_name = 'blog/home.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
     ordering = ['-date_posted']
-    paginate_by = 5
+    paginate_by = 6
 
 
 class UserPostListView(ListView):
@@ -41,14 +41,15 @@ class UserPostListView(ListView):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return Post.objects.filter(author=user).order_by('-date_posted')
 
-def PostDetailView(request, pk):
-    post = get_object_or_404(Post, pk=pk)
+def PostDetailView(request, slug):
+    post = get_object_or_404(Post, slug=slug)
     subcontent = PostImage.objects.filter(post=post)
     
+    slug_url_kwarg = 'slug' #NEW
 
     indexed_subcontent = list(enumerate(subcontent))
 
-    print(indexed_subcontent)
+    #print(indexed_subcontent)
 
     return render(request, 'blog/post_detail.html', {
         'object':post,
