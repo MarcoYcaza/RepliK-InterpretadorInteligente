@@ -1,6 +1,8 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
+{% include 'snippets/search.html' %}
+
     
 	<article class="content-section">
           <div class="media-body">
@@ -13,7 +15,7 @@
 
                          <div class="card-body">
                                  <h3>
-         <a class="card-link text-dark" href="{% url 'post-detail' post.slug %}" >{{ post.title }}</a>
+       				  <a class="card-link text-dark" href="{% url 'post-detail' post.slug %}" >{{ post.title }}</a>
                                  </h3>
                                  <p class="card-text">{{ post.abstract| truncatechars_html:200 |safe}}</p>
                                  <p class="card-text"><small class="text-muted">Published at {{ post.date_posted}}</small></p>

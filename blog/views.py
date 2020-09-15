@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.db.models import Q # New
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.views.generic import (
@@ -94,3 +95,31 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 def about(request):
     return render(request, 'blog/about.html', {'title': 'About'})
 
+class PostSearchListView(ListView):
+
+    template_name = 'blog/search.html'
+    #paginate_by = 6
+
+    def get_queryset(self):
+        
+        filters = Q(title__icontains=self.query())
+
+        # SELECT * FROM products WHERE title like %valor%
+
+        #Post.objects.filter(filters)[:5]
+        return Post.objects.filter(filters)
+
+    def query(self):
+
+        return self.request.GET.get('q')
+    
+    def get_context_data(self,**kwargs):
+
+        context = super().get_context_data(**kwargs)
+
+        context['query'] = self.query()
+
+        context['count'] = context['post_list'].count()
+
+        
+        return context
