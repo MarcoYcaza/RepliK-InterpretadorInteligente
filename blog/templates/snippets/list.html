@@ -1,0 +1,8 @@
+
+<div class="card-columns">
+    {% for object in post_list %}
+    
+        {% include 'snippets/post.html'  with post=object%}
+
+    {% endfor %}
+</div>
