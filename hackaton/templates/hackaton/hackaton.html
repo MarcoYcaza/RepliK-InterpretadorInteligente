@@ -1,0 +1,85 @@
+{% extends "hackaton/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<article class="content-section">
+
+    <div class="media">
+        <img src="media/image.png" class="mr-3" alt="...">
+
+        <div class="media-body">
+          <h3 class="article-title">Interpretador RepliK</h3>
+          El presente aplicativo te permite subir documentos de pymes para procesarlas en una tabla.
+        </div>
+
+    </div>
+</article>
+
+<article class="content-section">
+
+    <form  method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Ingreso de documentación</legend>
+            {{ form | crispy }}
+
+            <div class="card-footer ">
+                <button type="submit" class="btn btn-primary">Enviar Archivos</button>
+                <button type="reset" class="btn btn-dark float-right">Cancelar Envío</button>
+            </div>
+        </fieldset>
+
+
+        
+    </form>
+
+</article>
+
+<article class="content-section">
+
+
+<div class="content-section">
+    <button  type="button" class="btn btn-secondary btn-lg btn-block" >
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Recoger Data</button>
+</div>
+
+
+<div class="content-section"> 
+
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+</article>
+
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,52 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+
+<article class="content-section">
+
+<div class="col-m-3">
+
+    <div class="media">
+        <img src="media/default.jpg" class="mr-3" alt="...">
+        <div class="media-body">
+          <h3 class="article-title">Interpretador RepliK</h3>
+          El presente aplicativo te permite subir multiples documentos pdf para luego indexarlos en una base de datos.
+        </div>
+    </div>
+
+
+    <form  method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Selecciona los documentos: </label>
+            <div class="col-sm-10">
+                <input type="file" name="image[]" id="input-id" class="file" data-preview-file-type="text" multiple>
+            </div>
+        </div>
+        
+        <div class="card-footer ">
+            <button type="submit" class="btn btn-primary">Enviar Archivos</button>
+            <button type="reset" class="btn btn-default float-right">Reset</button>
+        </div>
+        
+    </form>
+
+</div>
+</article>
+
+{% endblock %}
+
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/js/fileinput.min.js"></script>
+<!-- Select2 -->
+<script>
+//Initialize Select2 Elements
+    $('.select2').select2()
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+      })
+</script>
+{% endblock %}

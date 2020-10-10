@@ -11,6 +11,8 @@ from django.views.generic import (
 )
 from .models import Post, PostImage
 
+def hackaton(request):
+    return render(request,'blog/hackaton.html',{'key':'value'})
 
 def home(request):
     posts=Post.objects.all()
@@ -123,3 +125,5 @@ class PostSearchListView(ListView):
 
         
         return context
+
+
