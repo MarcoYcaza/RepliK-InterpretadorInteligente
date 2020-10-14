@@ -38,48 +38,75 @@
 
 <article class="content-section">
 
-
 <div class="content-section">
-    <button  type="button" class="btn btn-secondary btn-lg btn-block" >
-        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-        Recoger Data</button>
+  
+    <a class="btn btn-primary btn-lg" href="{% url 'hackaton-retrieve-info' %}" role="button">Recoger Data</a>
+    
+    <!-- Example single danger button -->
+      <div class="btn-group">
+        <button type="button" class="btn btn-info dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Descargar
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="{% url 'hackaton-download' %}" download>Json</a>
+        </div>
+      </div>   
 </div>
 
 
-<div class="content-section"> 
+  <div class="content-section"> 
 
-<table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
-    </tbody>
+    <table class="table table-responsive">
+        <thead class="thead-dark">
+          <tr>
+	    <th scope="col">Id</th>
+            <th scope="col">Pyme</th>
+            <th scope="col">Unidad</th>
+            <th scope="col">Caja y bancos</th>
+            <th scope="col">Total Activos</th>
+            <th scope="col">Total Pasivos</th>
+	    <th scope="col">Total Patrimonio</th>
+            <th scope="col">Ventas</th>
+            <th scope="col">Costo Ventas</th>
+            <th scope="col">Utilidad Bruta</th>
+            <th scope="col">Utilidad Operacional</th>
+            <th scope="col">Utilidad antes de impuestos</th>
+            <th scope="col">Utilidad neta</th>
+            <th scope="col">Precisión de predicción</th>
+	    <th scope="col">Additional info</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for e in pymes_key %}
+          <tr>
+            <th scope="row">{{ e.id }}</th>
+            <td>{{ e.pyme_name }}</td>
+            <td>{{ e.mnt_units }}</td>
+	    <td>{{ e.cashResources }}</td>
+            <td>{{ e.totalAssets }}</td>
+            <td>{{ e.totalLiabilities }}</td>
+            <td>{{ e.totalEquity }}</td>
+            <td>{{ e.sales }}</td>
+            <td>{{ e.costSales }}</td>
+            <td>{{ e.grossProfit }}</td>
+            <td>{{ e.operatingProfit }}</td>
+            <td>{{ e.profitBeforeTax }}</td>
+            <td>{{ e.netProfit }}</td>
+	    <td>{{ e.accuracy }}</td>
+            <td>{{ e.more_info }}</td>    
+          </tr>
+          {% endfor %}
+          
+        </tbody>
+
+      </table >   
+
+  </div> 
 </article>
 
-</div>
+
+
+
 
 {% endblock %}
 

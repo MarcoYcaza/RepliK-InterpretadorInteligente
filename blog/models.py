@@ -15,7 +15,7 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     abstract = RichTextUploadingField(blank=True,config_name='special')
     slug = models.SlugField(null=True) # new
-    image = models.ImageField(default='default.png',blank=True, upload_to='PostPics')
+    image = models.ImageField(default='default.png',blank=True, upload_to='')
     post_tag = models.ManyToManyField(Tag,max_length=100)
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)

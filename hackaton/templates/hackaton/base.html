@@ -48,9 +48,8 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{% url 'hackaton-hackaton' %}">Hackaton-2020</a>
-              <a class="nav-item nav-link" href="{% url 'blog-home' %}">Publicaciones</a>
-	            <a class="nav-item nav-link" href="{% url 'blog-about' %}">¿Quién soy?</a>
+              <a class="nav-item nav-link" href="{% url 'hackaton-hackaton' %}">Aplicativo</a>
+              <a class="nav-item nav-link" href="{% url 'blog-home' %}">Tutorial</a>
 	      
             </div>
             </div>
@@ -62,8 +61,11 @@
     
           {% if messages %}
             {% for message in messages %}
-              <div class="alert alert-{{ message.tags }}">
+              <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
                 {{ message }}
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
               </div>
             {% endfor %}
           {% endif %}
